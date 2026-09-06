@@ -1,28 +1,30 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "The backend system for MySchedule webapp",
   "main": "index.js",
   "scripts": {
     "start": "tsx watch src/server.ts",
     "dev": "tsx watch src/server.ts"
   },
   "keywords": [],
-  "author": "",
+  "author": "Mahmoud Solaiman",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "dependencies": {
     "axios": "^1.19.0",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
-    "exceljs": "^3.4.0",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "mongoose": "^9.9.5",
+    "socket.io": "^4.8.3"
   },
   "devDependencies": {
     "@types/cors": "^2.8.19",
-    "@types/exceljs": "^0.5.3",
     "@types/express": "^5.0.6",
+    "@types/mongoose": "^5.11.96",
     "@types/node": "^26.2.0",
+    "@types/socket.io": "^3.0.1",
     "tsx": "^4.23.12",
     "typescript": "^7.0.2"
   }

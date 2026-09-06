@@ -1,13 +1,15 @@
 import express from 'express';
-import cors from 'cors';
+import { createServer } from "http";
+import { Server } from "socket.io";
 import schedulRoutes from "./routes/schedule.route";
 
 
 const app = express();
+const httpServer = createServer(app);
 
-app.use(cors({
-  origin: '*'
-}));
+const io = new Server(httpServer, {
+  cors: { origin: 'http://localhost:5173' }
+});
 
 app.use(express.json());
 
