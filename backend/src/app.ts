@@ -1,18 +1,18 @@
 import express from 'express';
-import { createServer } from "http";
+import { createServer } from "node:http";
 import { Server } from "socket.io";
 import schedulRoutes from "./routes/schedule.route";
 
 
 const app = express();
-const httpServer = createServer(app);
+const server = createServer(app);
 
-const io = new Server(httpServer, {
+const io = new Server(server, {
   cors: { origin: 'http://localhost:5173' }
 });
 
 app.use(express.json());
 
-app.use('/api', schedulRoutes)
+app.use('/api', schedulRoutes);
 
-export default app;
+export default server;
