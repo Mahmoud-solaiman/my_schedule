@@ -37,7 +37,7 @@ export const createUser = async (req: Request, res: Response) => {
 
     const user = new userModel({
       username,
-      email,
+      email: email.toLowerCase(),
       password: hashedPassword,
       role: role || "user",
     });
@@ -128,19 +128,7 @@ export const registerUser = async (req: Request, res: Response) => {
 
 export const updatePassword = async (req: Request, res: Response) => {
   try {
-    const { email, password, confirmPassword } = req.body;
-
-    if (!email || !password || !confirmPassword)
-      return res.status(400).json({
-        msg: "All fields are required. Please, fill all the required input fields",
-        success: false,
-      });
-
-    if (password !== confirmPassword)
-      return res.status(400).json({
-        msg: "The new password and the confirmation password must match.",
-        success: false,
-      });
+    const { email, password } = req.body;
 
     const user = await userModel.findOne({ email });
 

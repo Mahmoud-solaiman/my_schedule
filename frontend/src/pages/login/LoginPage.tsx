@@ -6,7 +6,8 @@ import { api } from "../../api/api";
 import type { LogInProps, UserResponse } from "../../types/types";
 import axios from "axios";
 
-export function LoginPage({ setIsMessage, setMessage }: LogInProps) {
+export function LoginPage({ setIsMessage, setMessage, setIsError }: LogInProps) {
+
   const [ isChecking, setIsChecking ] = useState<boolean>(false);
   const [ email, setEmail ] = useState<string>('');
   const [ tempPassword, setTempPassword ] = useState<string>('');
@@ -28,31 +29,44 @@ export function LoginPage({ setIsMessage, setMessage }: LogInProps) {
         if (response.data.success) {
           setIsChecking(false);
           setIsCorrectTempPassword(true);
+          setMessage(response.data.msg);
+          setIsMessage(true);
+          setIsError(false);
         }
       } catch (error: unknown) {
         if (axios.isAxiosError(error)) {
           const message = error.response?.data?.msg || 'Something went wrong. Please, try again momentarily.';
+          setIsError(true);
           setMessage(message);
           setIsMessage(true);
         }
         setIsChecking(false);
       }
 
-    } else if (isCorrectTempPassword && newPassword && confirmPassword && (newPassword === confirmPassword)) {
+    } else if (isCorrectTempPassword && newPassword && confirmPassword) {
       setIsChecking(true);
       try {
-        console.log(email);
         const response = await api.patch<UserResponse>('/api/user/password', {
           email: email.toLowerCase(),
           password: newPassword,
           confirmPassword
         });
 
-        if (response.data.success) setIsChecking(false);
+        if (response.data.success) {
+          setIsChecking(false);
+          setMessage(response.data.msg);
+          setIsMessage(true);
+          setIsError(false);
+        }
 
-        console.log(response.data.msg);
-      } catch (error) {
-        console.log(error);
+      } catch (error: unknown) {
+        if (axios.isAxiosError(error)) {
+          const message = error.response?.data?.msg || 'Something went wrong. Please, try again momentarily.';
+          setIsError(true);
+          setMessage(message);
+          setIsMessage(true);
+        }
+        setIsChecking(false);
       }
     }
   }

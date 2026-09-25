@@ -33,5 +33,6 @@ export interface MessagePopUpProps {
 
 export interface LogInProps {
   setIsMessage: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsError: React.Dispatch<React.SetStateAction<boolean>>;
   setMessage: React.Dispatch<React.SetStateAction<string>>;
 }
