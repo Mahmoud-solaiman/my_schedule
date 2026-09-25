@@ -3,9 +3,10 @@ import { Spinner } from "../../components/loaders/Spinner";
 import { PasswordInput } from "./PasswordInput";
 import * as EmailValidator from 'email-validator';
 import { api } from "../../api/api";
-import type { UserResponse } from "../../types/types";
+import type { LogInProps, UserResponse } from "../../types/types";
+import axios from "axios";
 
-export function LoginPage() {
+export function LoginPage({ setIsMessage, setMessage }: LogInProps) {
   const [ isChecking, setIsChecking ] = useState<boolean>(false);
   const [ email, setEmail ] = useState<string>('');
   const [ tempPassword, setTempPassword ] = useState<string>('');
@@ -28,8 +29,12 @@ export function LoginPage() {
           setIsChecking(false);
           setIsCorrectTempPassword(true);
         }
-      } catch (error) {
-        console.log(error);
+      } catch (error: unknown) {
+        if (axios.isAxiosError(error)) {
+          const message = error.response?.data?.msg || 'Something went wrong. Please, try again momentarily.';
+          setMessage(message);
+          setIsMessage(true);
+        }
         setIsChecking(false);
       }
 

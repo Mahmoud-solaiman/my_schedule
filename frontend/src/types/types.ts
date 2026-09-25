@@ -22,3 +22,16 @@ export type UserResponse = {
     };
   };
 };
+
+
+export interface MessagePopUpProps {
+  message: string;
+  delay?: number;
+  isError?: boolean;
+  hidePopUp: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export interface LogInProps {
+  setIsMessage: React.Dispatch<React.SetStateAction<boolean>>;
+  setMessage: React.Dispatch<React.SetStateAction<string>>;
+}

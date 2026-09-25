@@ -9,14 +9,14 @@
   --color-ultra-dark: #1e1e1e;
   --color-dark-gray: #A9A9A9;
   --color-light-gray: #B1B1B1;
-  --animate-fade-in: fadeIn .5s linear;
+  --animate-slide-in: slideIn .1s linear;
 
-  @keyframes fadeIn {
+  @keyframes slideIn {
     from {
-      opacity: 0;
+      scale: 0;
     }
     to {
-      opacity: 1;
+      scale: 1;
     }
   }
 }
