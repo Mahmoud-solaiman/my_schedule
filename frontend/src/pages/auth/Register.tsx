@@ -6,7 +6,7 @@ import { api } from "../../api/api";
 import type { RegisterInfoState, AuthProps, UserResponse } from "../../types/types";
 import axios from "axios";
 
-export function Register({ setIsMessage, setMessage, setIsError }: AuthProps) {
+export function Register({ setMessagePopUp }: AuthProps) {
 
   const [ registerationInfo, setRegisterationInfo ] = useState<RegisterInfoState>({
     email: '',
@@ -28,19 +28,14 @@ export function Register({ setIsMessage, setMessage, setIsError }: AuthProps) {
           password: registerationInfo.tempPassword
         });
 
-        if (response.data.success) {
-          setRegisterationInfo(prevInfo => ({...prevInfo, isChecking: false }));
-          setRegisterationInfo(prevInfo => ({...prevInfo, isCorrectTempPassword: true }));
-          setMessage(response.data.msg);
-          setIsMessage(true);
-          setIsError(false);
-        }
+        setRegisterationInfo(prevInfo => ({...prevInfo, isChecking: false }));
+        setRegisterationInfo(prevInfo => ({...prevInfo, isCorrectTempPassword: true }));
+        setMessagePopUp(response.data.msg, false);
+
       } catch (error: unknown) {
         if (axios.isAxiosError(error)) {
           const message = error.response?.data?.msg || 'Something went wrong. Please, try again momentarily.';
-          setIsError(true);
-          setMessage(message);
-          setIsMessage(true);
+          setMessagePopUp(message, true);
         }
         setRegisterationInfo(prevInfo => ({...prevInfo, isChecking: false }));
       }
@@ -54,19 +49,13 @@ export function Register({ setIsMessage, setMessage, setIsError }: AuthProps) {
           confirmPassword: registerationInfo.confirmPassword,
         });
 
-        if (response.data.success) {
-          setRegisterationInfo(prevInfo => ({...prevInfo, isChecking: false }));
-          setMessage(response.data.msg);
-          setIsMessage(true);
-          setIsError(false);
-        }
+        setRegisterationInfo(prevInfo => ({...prevInfo, isChecking: false }));
+        setMessagePopUp(response.data.msg, false);
 
       } catch (error: unknown) {
         if (axios.isAxiosError(error)) {
           const message = error.response?.data?.msg || 'Something went wrong. Please, try again momentarily.';
-          setIsError(true);
-          setMessage(message);
-          setIsMessage(true);
+          setMessagePopUp(message, true);
         }
         setRegisterationInfo(prevInfo => ({...prevInfo, isChecking: false }));
       }
@@ -115,7 +104,7 @@ export function Register({ setIsMessage, setMessage, setIsError }: AuthProps) {
       }
       <div className="relative">
         {
-          registerationInfo.isChecking && <Spinner className="absolute inset-0 bg-super-dark opacity-80 rounded-lg flex justify-center items-center" />
+          registerationInfo.isChecking && <Spinner className="absolute inset-0 bg-[rgba(0,0,0,.7)] rounded-lg flex justify-center items-center" />
         }
         <button type="submit" className="bg-neon-blue w-full py-2 text-2xl rounded-lg cursor-pointer font-semibold hover:opacity-70 transition-all">
           {

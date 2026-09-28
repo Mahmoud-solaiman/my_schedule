@@ -32,9 +32,7 @@ export interface MessagePopUpProps {
 }
 
 export interface AuthProps {
-  setIsMessage: React.Dispatch<React.SetStateAction<boolean>>;
-  setIsError: React.Dispatch<React.SetStateAction<boolean>>;
-  setMessage: React.Dispatch<React.SetStateAction<string>>;
+  setMessagePopUp: (message: string, isError: boolean) => void;
   type?: 'register' | 'login';
 }
 

@@ -3,7 +3,7 @@ import type { AuthProps } from "../../types/types";
 import { Login } from "./Login";
 import { Register } from "./Register";
 
-export function AuthPage({ setIsMessage, setMessage, setIsError, type }: AuthProps) {
+export function AuthPage({ setMessagePopUp, type }: AuthProps) {
 
   return (
     <div className="h-screen flex justify-center items-center flex-col gap-10">
@@ -28,11 +28,11 @@ export function AuthPage({ setIsMessage, setMessage, setIsError, type }: AuthPro
         { 
           type === 'register'
           ? <Register 
-              setMessage={setMessage} 
-              setIsMessage={setIsMessage}
-              setIsError={setIsError}
+              setMessagePopUp={setMessagePopUp}
             />
-          : <Login />
+          : <Login 
+              setMessagePopUp={setMessagePopUp}
+            />
         }
       </div>
 
