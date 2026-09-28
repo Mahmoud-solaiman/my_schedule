@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { PasswordInputProps } from "../../types/types";
+import type { PasswordInputProps } from "../types/types";
 
 export function PasswordInput({ 
     setPassword, 

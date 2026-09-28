@@ -1,5 +1,5 @@
 import { Route, Routes, useNavigate } from "react-router-dom";
-import { LoginPage } from "./pages/login/LoginPage";
+import { AuthPage } from "./pages/auth/AuthPage";
 import { useEffect, useState } from "react";
 import MessagePopUp from "./components/MessagePopUp";
 
@@ -11,7 +11,7 @@ export default function App() {
   const [ isError, setIsError ] = useState<boolean>(true);
 
   useEffect(() => {
-    navigator('/user/login');
+    navigator('/auth/login');
   }, [navigator]);
   
   return (
@@ -25,11 +25,20 @@ export default function App() {
           />
       }
       <Routes>
-        <Route path="/user/login" element={
-          <LoginPage 
+        <Route path="/auth/register" element={
+          <AuthPage 
             setMessage={setMessage} 
             setIsMessage={setIsMessage}
             setIsError={setIsError}
+            type="register"
+          />
+        } />
+        <Route path="/auth/login" element={
+          <AuthPage 
+            setMessage={setMessage} 
+            setIsMessage={setIsMessage}
+            setIsError={setIsError}
+            type="login"
           />
         } />
       </Routes>

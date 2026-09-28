@@ -1,5 +1,5 @@
 export interface PasswordInputProps extends React.ComponentPropsWithoutRef<"div"> {
-  setPassword: React.Dispatch<React.SetStateAction<string>>;
+  setPassword(value: string): void;
   placeholder: string;
   isDisabled?: boolean;
 }
@@ -31,8 +31,24 @@ export interface MessagePopUpProps {
   hidePopUp: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export interface LogInProps {
+export interface AuthProps {
   setIsMessage: React.Dispatch<React.SetStateAction<boolean>>;
   setIsError: React.Dispatch<React.SetStateAction<boolean>>;
   setMessage: React.Dispatch<React.SetStateAction<string>>;
+  type?: 'register' | 'login';
+}
+
+export type LogInInfoState = {
+  email: string;
+  password: string;
+  isChecking: boolean;
+}
+
+export type RegisterInfoState = {
+  email: string;
+  newPassword: string;
+  confirmPassword: string;
+  tempPassword: string;
+  isChecking: boolean;
+  isCorrectTempPassword: boolean;
 }
