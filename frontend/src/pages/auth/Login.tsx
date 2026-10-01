@@ -24,9 +24,13 @@ export function Login({ setMessagePopUp }: AuthProps) {
         return;
       }
       const response = await api.post<UserResponse>('/api/auth/login', {
-        email: logInInfo.email,
+        email: logInInfo.email.toLowerCase(),
         password: logInInfo.password
       });
+
+      if (response.data.token) {
+        localStorage.setItem('token', response.data.token);
+      }
 
       setMessagePopUp(response.data.msg, false);
       setLogInInfo(prevInfo => ({ ...prevInfo, isChecking: false }));

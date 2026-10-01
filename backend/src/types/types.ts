@@ -15,3 +15,15 @@ export type User = {
     canEditTheirSchedule: boolean;
   }
 }
+
+export type JWTTokenPayload = {
+  id: string;
+  role: string;
+  permissions: {
+    canAddAndRemoveAccounts: boolean;
+    canChangeRoles: boolean;
+    canEditSchedules: boolean;
+    canCreateSchdedules: boolean;
+    canEditTheirSchedule: boolean;
+  };
+};

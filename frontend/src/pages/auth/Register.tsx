@@ -23,7 +23,7 @@ export function Register({ setMessagePopUp }: AuthProps) {
     if (!registerationInfo.isCorrectTempPassword && isValidEmail && registerationInfo.tempPassword) {
       setRegisterationInfo(prevInfo => ({...prevInfo, isChecking: true }));
       try {
-        const response = await api.post<UserResponse>('/api/user/register', {
+        const response = await api.post<UserResponse>('/api/auth/register', {
           email: registerationInfo.email.toLowerCase(),
           password: registerationInfo.tempPassword
         });
@@ -43,11 +43,15 @@ export function Register({ setMessagePopUp }: AuthProps) {
     } else if (registerationInfo.isCorrectTempPassword && registerationInfo.newPassword && registerationInfo.confirmPassword) {
       setRegisterationInfo(prevInfo => ({...prevInfo, isChecking: true }));
       try {
-        const response = await api.patch<UserResponse>('/api/user/password', {
+        const response = await api.patch<UserResponse>('/api/auth/password', {
           email: registerationInfo.email.toLowerCase(),
           password: registerationInfo.newPassword,
           confirmPassword: registerationInfo.confirmPassword,
         });
+
+        if (response.data.token) {
+          localStorage.setItem('token', response.data.token);
+        }
 
         setRegisterationInfo(prevInfo => ({...prevInfo, isChecking: false }));
         setMessagePopUp(response.data.msg, false);
