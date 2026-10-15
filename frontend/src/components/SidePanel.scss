@@ -1,0 +1,183 @@
+.side-panel {
+  background-color: var(--secondary-color);
+  width: 3.5rem;
+  position: absolute;
+  inset: 0 auto 0 0;
+  display: flex;
+  flex-direction: column;
+  padding-block: 1.25rem;
+  gap: 2.5rem;
+  align-items: center;
+  transition: all .4s linear;
+  overflow: hidden;
+
+  svg {
+    fill: var(--primary-text);
+  }
+}
+
+.side-panel[data-state=true] {
+  width: auto;
+  align-items: flex-start;
+  padding: 1.25rem .9rem;
+
+  .logo-section {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+
+    h2 {
+      font-size: 2rem;
+    }
+  }
+
+  .user-section {
+    background-color: var(--primary-color);
+    padding: .8rem;
+    border-radius: 10px;
+    
+    & > div:first-of-type {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-block-end: 1rem;
+
+
+      & .profile-icon {
+        width: 55px;
+      }
+
+      & svg {
+        width: 28px;
+        cursor: pointer;
+      }
+
+      & > div:last-of-type {
+        font-size: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: var(--secondary-color);
+        width: 115px;
+        border-radius: 30px;
+        padding: .3rem .6rem;
+      }
+    }
+
+    & > div:last-of-type {
+      h3 {
+        font-size: 1.7rem;
+        display: flex;
+        flex-direction: column;
+        gap: .6rem;
+
+        & > span:first-of-type {
+          font-weight: 400;
+          color: var(--secondary-text);
+        }
+
+        & > span:last-of-type {
+          font-weight: 700;
+          font-size: 1.7rem;
+        }
+      }
+    }
+
+  }
+
+  .sections-container {
+    background-color: var(--primary-color);
+    width: 100%;
+    padding: .8rem .5rem;
+    border-radius: 10px;
+    gap: 0;
+    div {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      cursor: pointer;
+      transition: .15s linear;
+      padding: .4rem .3rem;
+      border-radius: 10px;
+
+      &:hover {
+        background-color: var(--secondary-color);
+      }
+
+      h4 {
+        font-size: 1.5rem;
+      }
+
+      svg {
+        width: 40px;
+        height: 40px;
+        padding: 0;
+      }
+      svg:hover {
+        background-color: transparent;
+      }
+    }
+
+    div::after {
+      content: '';
+    }
+  }
+}
+
+.side-panel[data-state=false] {
+  overflow: visible;
+  h2, h3, h4, .sun-icon, .moon-icon {
+    display: none;
+  }
+}
+
+.logo, .profile-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.sections-container {
+  display: flex;
+  flex-direction: column;
+  gap: .8rem;
+  padding-block-start: 1.25rem;
+
+  & > div {
+    position: relative;
+
+    & > svg {
+      transition: .2s linear;
+      padding: .4em;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      
+      &:hover {
+        background-color: var(--primary-color);
+      }
+    }
+  }
+
+  & > div::after {
+      content: attr(data-title);
+      position: absolute;
+      left: 56px;
+      top: 5px;
+      background: #1e1e1e;
+      padding: .5em .8em;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all .2s linear;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+  }
+
+  & > div:hover::after {
+    opacity: 1;
+    visibility: visible;
+  }
+}

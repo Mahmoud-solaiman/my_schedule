@@ -1,0 +1,38 @@
+:root {
+  --primary-color: #121212; // Super dark
+  --primary-btn: #0088FF; // Neon blue
+  --primary-text: #ffffff; // white
+  --secondary-color: #1e1e1e; // Ultra dark
+  --secondary-text: #B1B1B1; // light gray
+  --shadow-register-card: #b1b1b1; // light gray
+  interpolate-size: allow-keywords;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  border: none;
+  text-decoration: none;
+  color: var(--primary-text);
+}
+
+// @import "tailwindcss";
+
+// @theme {
+//   --color-mint-green: #0EBC6B;
+//   --color-tomato-red: #EC5158;
+//   --color-marigold: #F1A82F;
+//   --color-neon-blue: #0088FF;
+//   --color-super-dark: #121212;
+//   --color-ultra-dark: #1e1e1e;
+//   --color-dark-gray: #A9A9A9;
+//   --color-light-gray: #B1B1B1;
+// }
+
+body {
+  background-color: #121212;
+  font-family: Arial, Helvetica, sans-serif;
+  color-scheme: dark light;
+}

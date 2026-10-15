@@ -2,6 +2,7 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import { AuthPage } from "./pages/auth/AuthPage";
 import { useState } from "react";
 import MessagePopUp from "./components/MessagePopUp";
+import { SidePanel } from "./components/SidePanel";
 
 
 export default function App() {
@@ -39,6 +40,7 @@ export default function App() {
             type="login"
           />
         } />
+        <Route path="/admin/*" element={<SidePanel />} />
       </Routes>
     </>
   );

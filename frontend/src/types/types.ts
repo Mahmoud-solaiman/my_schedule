@@ -4,10 +4,27 @@ export interface PasswordInputProps extends React.ComponentPropsWithoutRef<"div"
   isDisabled?: boolean;
 }
 
+type Permissions = {
+  canAddAndRemoveAccounts: boolean;
+  canChangeRoles: boolean;
+  canEditSchedules: boolean;
+  canCreateSchdedules: boolean;
+  canEditTheirSchedule: boolean;
+}
+
+export type User = {
+  id: string,
+  role: 'superadmin' | 'admin' | 'user',
+  username: string,
+  email: string,
+  permissions: Permissions,
+}
+
 export type UserResponse = {
   msg: string;
   success: boolean;
   token?: string;
+  user?: User
 };
 
 

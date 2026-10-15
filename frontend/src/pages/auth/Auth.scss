@@ -1,0 +1,75 @@
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding-block-start: 2.5rem;
+
+  div {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  div > svg {
+    width: 2rem;
+    position: absolute;
+    left: 6px;
+    fill: var(--secondary-text);
+  }
+
+  #password ~ svg {
+    position: absolute;
+    fill: var(--secondary-text);
+    cursor: pointer;
+    right: 6px;
+    left: auto;
+    width: 28px;
+  }
+
+  div > input {
+    width: 100%;
+    background-color: var(--primary-color);
+    font-size: 1.35rem;
+    padding-inline-start: 2.75rem;
+    padding-inline-end: .75rem;
+    padding-block: .8rem;
+    border-radius: 8px;
+
+    &:focus-within {
+      outline: none;
+    }
+  }
+
+  div > input:disabled {
+    opacity: .3;
+  }
+
+  div > button[type="submit"] {
+    background-color: var(--primary-btn);
+    width: 100%;
+    font-size: 1.5rem;
+    border-radius: 8px;
+    padding-block: .6rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: .2s linear;
+
+    &:hover {
+      opacity: .7;
+    }
+
+    &:active {
+      opacity: .5;
+    }
+  }
+
+  .spinner-container {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0,0,0,.7);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

@@ -19,7 +19,7 @@ export const login = async (req: Request, res: Response) => {
 
     if (!user.isPasswordUpdated) 
       return res.status(400).json({
-        msg: 'Seems like this is your first time logging in. Please, register instead.',
+        msg: 'If this is your first time logging in. Please, register instead.',
         success: false,
       });
 
@@ -53,7 +53,14 @@ export const login = async (req: Request, res: Response) => {
     res.status(200).json({
       msg: 'Welcome Back. Have A Happy Shift!',
       success: true,
-      token: accessToken
+      token: accessToken,
+      user: {
+        id: user._id,
+        role: user.role,
+        username: user.username,
+        email: user.email,
+        permissions: user.permissions
+      }
     });
 
   } catch (error) {

@@ -2,21 +2,22 @@ import { Link } from "react-router-dom";
 import type { AuthProps } from "../../types/types";
 import { Login } from "./Login";
 import { Register } from "./Register";
+import './AuthPage.scss';
 
 export function AuthPage({ setMessagePopUp, type }: AuthProps) {
 
   return (
-    <div className="h-screen flex justify-center items-center flex-col gap-10">
-      <div className="sm:w-120 bg-ultra-dark text-center rounded-xl py-5 px-3 shadow-[0_0_250px_-50px_#b1b1b1] transition-all">
+    <div className="container">
+      <div className="login-register-container">
         <div>
-          <h2 className="text-3xl font-bold">
+          <h2>
             {
               type === 'register'
               ? 'Welcome To MySchedule'
               : 'Welcome Back To MySchedule'
             }
           </h2>
-          <h3 className="text-2xl text-light-gray">
+          <h3>
             {
               type === 'register'
               ? 'Happy New Journey'
@@ -36,7 +37,7 @@ export function AuthPage({ setMessagePopUp, type }: AuthProps) {
         }
       </div>
 
-      <Link to={ type === 'register' ? '/auth/login' : '/auth/register' }className="cursor-pointer text-lg hover:opacity-70 font-semibold transition-all">
+      <Link to={ type === 'register' ? '/auth/login' : '/auth/register' }>
         {
           type === 'register' 
           ? 'Already have an account?'
