@@ -8,11 +8,11 @@
   padding-block: 1.25rem;
   gap: 2.5rem;
   align-items: center;
-  transition: all .4s linear;
+  transition: all .1s linear;
   overflow: hidden;
 
   svg {
-    fill: var(--primary-text);
+    fill: #fff;
   }
 }
 
@@ -28,6 +28,7 @@
 
     h2 {
       font-size: 2rem;
+      color: #fff;
     }
   }
 
@@ -48,8 +49,10 @@
       }
 
       & svg {
-        width: 28px;
+        width: 25px;
         cursor: pointer;
+        z-index: 5;
+        position: relative;
       }
 
       & > div:last-of-type {
@@ -58,7 +61,7 @@
         justify-content: space-between;
         align-items: center;
         background-color: var(--secondary-color);
-        width: 115px;
+        width: 100px;
         border-radius: 30px;
         padding: .3rem .6rem;
       }
@@ -79,6 +82,7 @@
         & > span:last-of-type {
           font-weight: 700;
           font-size: 1.7rem;
+          color: #fff;
         }
       }
     }
@@ -88,9 +92,10 @@
   .sections-container {
     background-color: var(--primary-color);
     width: 100%;
-    padding: .8rem .5rem;
+    padding: .4rem .5rem;
     border-radius: 10px;
     gap: 0;
+    
     div {
       display: flex;
       align-items: center;
@@ -105,7 +110,8 @@
       }
 
       h4 {
-        font-size: 1.5rem;
+        font-size: 1.5rem; 
+        color: #fff;
       }
 
       svg {
@@ -119,13 +125,37 @@
     }
 
     div::after {
-      content: '';
+      visibility: hidden;
     }
   }
 }
 
+.side-panel[data-state=true] .mode-toggle {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 33px;
+    height: 33px;
+    border-radius: 50%;
+    transition: .15s linear;
+    background-color: var(--primary-color);
+    z-index: 1;
+  }
+}
+
+[data-mode=dark]::after {
+  transform: translate(-5px);
+}
+
+[data-mode=light]::after {
+  transform: translate(155%);
+}
+
 .side-panel[data-state=false] {
   overflow: visible;
+
   h2, h3, h4, .sun-icon, .moon-icon {
     display: none;
   }
@@ -143,9 +173,13 @@
   flex-direction: column;
   gap: .8rem;
   padding-block-start: 1.25rem;
-
+  
   & > div {
     position: relative;
+    
+    h4 {
+      font-weight: 500;
+    }
 
     & > svg {
       transition: .2s linear;
@@ -166,18 +200,33 @@
       position: absolute;
       left: 56px;
       top: 5px;
-      background: #1e1e1e;
+      background: var(--secondary-color);
+      color: #fff;
       padding: .5em .8em;
       border-radius: 8px;
       font-weight: 600;
       transition: all .2s linear;
       opacity: 0;
       visibility: hidden;
-      pointer-events: none;
   }
 
   & > div:hover::after {
     opacity: 1;
     visibility: visible;
+  }
+}
+
+// Animations
+
+.orbiting {
+  animation: self-orbit 4s linear infinite reverse;
+}
+
+@keyframes self-orbit {
+  from {
+    rotate: 0;
+  }
+  to {
+    rotate: 360deg;
   }
 }
