@@ -14,6 +14,6 @@ export const genRefreshToken = (payload: JWTTokenPayload) => {
   return jwt.sign(
     payload,
     process.env.REFRESH_TOKEN_SECRET!,
-    { expiresIn: '7d' }
+    { expiresIn: '180d' }
   );
 };

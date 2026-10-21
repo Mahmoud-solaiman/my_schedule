@@ -11,11 +11,11 @@ const app = express();
 const server = createServer(app);
 
 const io = new Server(server, {
-  cors: { origin: process.env.FRONTEND_ORIGIN_URL, credentials: true }
+  cors: { origin: ['http://localhost:5173', 'http://192.168.1.7:5173', process.env.FRONTEND_ORIGIN_URL as string], credentials: true }
 });
 
 app.use(cors({
-  origin: process.env.FRONTEND_ORIGIN_URL,
+  origin: ['http://localhost:5173', 'http://192.168.1.7:5173', process.env.FRONTEND_ORIGIN_URL as string],
   credentials: true
 }));
 

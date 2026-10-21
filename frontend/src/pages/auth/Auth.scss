@@ -29,6 +29,7 @@
   div > input {
     width: 100%;
     background-color: var(--primary-color);
+    color: #fff;
     font-size: 1.35rem;
     padding-inline-start: 2.75rem;
     padding-inline-end: .75rem;
@@ -46,6 +47,7 @@
 
   div > button[type="submit"] {
     background-color: var(--primary-btn);
+    color: #fff;
     width: 100%;
     font-size: 1.5rem;
     border-radius: 8px;
