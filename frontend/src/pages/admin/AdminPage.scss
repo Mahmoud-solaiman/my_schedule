@@ -1,3 +1,8 @@
 .admin-page-container {
   display: flex;
+  gap: 1.5rem;
+
+  .routes-container {
+    flex-grow: 1;
+  }
 }

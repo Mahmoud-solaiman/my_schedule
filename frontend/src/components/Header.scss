@@ -1,0 +1,42 @@
+.header {
+  display: grid;
+  grid-template-columns: auto 35px 50px;
+  gap: 1rem;
+  align-items: center;
+  justify-content: end;
+  fill: var(--primary-text);
+  padding: .5rem;
+
+  .employee-locator-container {
+    display: grid;
+    grid-template-columns: minmax(0, auto);
+    input {
+      font-size: 1.4rem;
+      padding: .5rem .8rem;
+      background-color: transparent;
+      border-radius: 30px;
+      border: 2px solid var(--secondary-text);
+
+      &::placeholder {
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+      }
+    }
+  }
+
+  & > div:not(:first-of-type) {
+    cursor: pointer;
+    transition: .2s linear;
+
+    @media (hover: hover) {
+      &:hover {
+        opacity: .85;
+      }
+    }
+
+    &:active {
+      opacity: .75;
+    }
+  }
+}
