@@ -10,17 +10,77 @@
   .employee-locator-container {
     display: grid;
     grid-template-columns: minmax(0, auto);
+    position: relative;
+
     input {
       font-size: 1.4rem;
-      padding: .5rem .8rem;
+      padding: .45rem .8rem;
       background-color: transparent;
       border-radius: 30px;
-      border: 2px solid var(--secondary-text);
+      border: 1px solid var(--secondary-text);
 
       &::placeholder {
         user-select: none;
         -webkit-user-select: none;
         -moz-user-select: none;
+      }
+    }
+
+    .employees-search-result-container {
+      width: 95%;
+      background-color: var(--secondary-color);
+      padding: .5rem .2rem;
+      box-shadow: 3px 3px 4px #A9A9A9;
+      max-height: 200px;
+      overflow: auto;
+      position: absolute;
+      top: 60px; 
+      left: 50%;
+      transform: translatex(-50%);
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+
+      .employee-loader {
+        margin: 0 auto;
+      }
+      
+      .employee {
+        display: flex;
+        justify-content: space-between;
+        cursor: pointer;
+        padding: .7rem .5rem;
+        border-radius: 5px;
+        color: #fff;
+        
+        @media (hover: hover) {
+          &:hover {
+            background-color: var(--primary-color);
+          }
+        }
+
+        .employee-name {
+          font-size: 1.1rem;
+        }
+
+        .employee-role {
+          font-size: .9rem;  
+        }
+
+        .employee-role[data-role="superadmin"] {
+          color: var(--success-color);
+          text-shadow: 0 0 7px var(--success-color);
+        }
+        
+        .employee-role[data-role="admin"] {
+          color: var(--danger-color);
+          text-shadow: 0 0 7px var(--danger-color);
+        }
+
+        .employee-role[data-role="user"] {
+          color: var(--warning-color);
+          text-shadow: 0 0 7px var(--warning-color);
+        }
       }
     }
   }

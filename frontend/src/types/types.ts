@@ -27,6 +27,17 @@ export type UserResponse = {
   user?: User
 };
 
+export type Employee = {
+  _id: string;
+  username: string;
+  role: string;
+}
+
+export type EmployeeResponse = {
+  msg: string;
+  success: boolean;
+  users: Employee[];
+}
 
 export interface MessagePopUpProps {
   message: string;

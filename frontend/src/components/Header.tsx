@@ -1,8 +1,16 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './Header.scss';
+import type { EmployeeResponse, Employee } from '../types/types';
+import { api } from '../api/api';
+import { Link } from 'react-router-dom';
+import { Spinner } from './loaders/Spinner';
 
 export function Header() {
   const employeeLocator = useRef<HTMLInputElement>(null);
+  const [ employees, setEmployees ] = useState<Employee[]>([]);
+  const [ timeoutId, setTimeoutId ] = useState<number>();
+  const [ isSearchResult, setIsSearchResult ] = useState<boolean>(false);
+  const [ isSearching, setIsSearching ] = useState<boolean>(false);
 
   useEffect(() => {
     const focusEmployeeLocator = () => {
@@ -16,7 +24,63 @@ export function Header() {
   return (
     <header className="header">
       <div className="employee-locator-container">
-        <input ref={employeeLocator} type="text" placeholder="Search employee..." name="employee-locator" id="employee-locator" />
+        <input 
+          ref={employeeLocator} 
+          type="text" 
+          placeholder="Search employee..." 
+          name="employee-locator" 
+          id="employee-locator"
+          autoComplete="off"
+          onChange={async (e) => {
+            const name = e.currentTarget.value;
+
+            if (!name.trim()) {
+              setIsSearchResult(false);
+              return;
+            }
+
+            setIsSearchResult(true);
+            setIsSearching(true);
+
+            clearTimeout(timeoutId);
+
+            if (name.trim()) {
+              setTimeoutId(setTimeout(async () => {
+                const employeesResponse = await api.get<EmployeeResponse>('/api/user', {
+                  params: {
+                    name
+                  }
+                }); 
+  
+                setEmployees(employeesResponse.data.users);
+                setIsSearching(false);
+              }, 500));
+            }
+
+          }} 
+        />
+        {
+          isSearchResult &&
+          <div className="employees-search-result-container">
+
+            {
+              isSearching && <Spinner className="employee-loader" />
+            }
+
+            {
+              !isSearching &&
+              
+                employees.map(employee => {
+                  return (
+                    <Link className="employee" to={`/employees/${employee._id}`}>
+                      <span className="employee-name">{employee.username}</span>
+                      <span data-role={employee.role} className="employee-role">{employee.role}</span>
+                    </Link>
+                  );
+                })
+            }
+          </div>
+        }
       </div>
       <div>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" >

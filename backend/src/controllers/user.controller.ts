@@ -81,3 +81,35 @@ export const deleteUser = async (req: Request, res: Response) => {
   }
 };
 
+export const lookupUser = async (req: Request, res: Response) => {
+  try {
+
+    const { name } = req.query;
+
+    if (typeof name !== 'string' || !name.trim()) return res.status(400).json({
+      msg: "A valid lookup must at least contain one letter.",
+      success: false,
+    });
+
+    const users = await userModel.find({
+      username: { $regex: name, $options: 'i' }
+    }).select('username role');
+
+    if (!users.length) return res.status(404).json({
+      msg: "No employee found.",
+      success: false,
+    });
+
+    res.status(200).json({
+      msg: "Users were fetched successfully",
+      success: true,
+      users
+    });
+    
+  } catch (error) {
+    res.status(500).json({
+      msg: "Something went wrong on the server side. Please, try again later",
+      error,
+    });
+  }
+}
