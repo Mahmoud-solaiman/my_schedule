@@ -27,7 +27,7 @@ export const checkLoginData = (
 ) => {
   try {
     const { email, password } = req.body;
-    if (!email || !password)
+    if (!email.trim() || !password.trim())
       return res.status(400).json({
         msg: "All fields are required. Please, fill all the required input fields.",
         success: false,

@@ -10,7 +10,7 @@ export default function MessagePopUp({ message, delay = 2000, isError = true, hi
   }, [delay, hidePopUp]);
   return (
     <div className="message-container">
-      <div className={ ` ${ isError ? 'error' : 'message' } ` }>
+      <div className={`${ isError ? 'error' : 'message' }`}>
         <p>{ message }</p>
       </div>
     </div>

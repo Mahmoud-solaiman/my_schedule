@@ -27,7 +27,7 @@ export function Header() {
         <input 
           ref={employeeLocator} 
           type="text" 
-          placeholder="Search employee..." 
+          placeholder="Search for an employee..." 
           name="employee-locator" 
           id="employee-locator"
           autoComplete="off"

@@ -9,7 +9,7 @@ export const login = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
     
-    const user = await userModel.findOne({ email });
+    const user = await userModel.findOne({ email }).select('-createdAt -updatedAt -__v');
 
     if (!user) 
       return res.status(404).json({
@@ -54,13 +54,7 @@ export const login = async (req: Request, res: Response) => {
       msg: 'Welcome Back. Have A Happy Shift!',
       success: true,
       token: accessToken,
-      user: {
-        id: user._id,
-        role: user.role,
-        username: user.username,
-        email: user.email,
-        permissions: user.permissions
-      }
+      user
     });
 
   } catch (error) {

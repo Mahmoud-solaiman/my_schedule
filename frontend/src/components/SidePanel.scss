@@ -7,7 +7,7 @@
   align-items: center;
   padding-block: 1.25rem;
   gap: 2.5rem;
-  transition: all .15s linear;
+  transition: all .1s linear;
   white-space: nowrap;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
@@ -15,6 +15,7 @@
 
   svg {
     fill: #fff;
+    cursor: pointer;
   }
 }
 
@@ -127,6 +128,10 @@
       visibility: hidden;
     }
   }
+
+  .sign-out-section {
+    display: none;
+  }
 }
 
 .side-panel[data-state="false"] {
@@ -138,6 +143,45 @@
   .mode-toggle,
   .logo-section .close-sidepanel {
     display: none;
+  }
+
+  .sign-out-section {
+    margin-block-start: auto;
+
+    div {
+      position: relative;
+
+      &:hover::after {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+
+    div::after {
+      content: 'Sign Out';
+      position: absolute;
+      inset: 6px -100px auto auto;
+      font-size: 1.2rem;
+      background-color: rgba(236, 81, 88, .15);
+      color: var(--danger-color);
+      padding: .3rem .5rem;
+      border-radius: 10px;
+      transition: .15s linear;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    svg {
+      width: 45px;
+      padding: .35rem;
+      border-radius: 50%;
+      fill: var(--danger-color);
+      transition: background-color .15s linear;
+      
+      &:hover {
+        background-color: rgba(236, 81, 88, .15);
+      }
+    }
   }
 }
 
@@ -171,7 +215,6 @@
   height: 45px;
   border-radius: 50%;
   font-size: 0;
-  cursor: pointer;
 }
 
 .logo-section {
@@ -221,7 +264,6 @@
 
   & svg {
     width: 25px;
-    cursor: pointer;
     z-index: 5;
     position: relative;
   }
@@ -247,7 +289,6 @@
       border-radius: 50%;
       width: 50px;
       height: 50px;
-      cursor: pointer;
 
       &:hover {
         background-color: var(--primary-color);

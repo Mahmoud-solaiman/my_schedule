@@ -36,6 +36,11 @@ export function Login({ setMessagePopUp }: AuthProps) {
         localStorage.setItem('token', response.data.token);
       }
 
+      if (response.data.user?.username) {
+        sessionStorage.setItem('username', response.data.user?.username);
+      }
+
+
       switch (response.data.user?.role) {
         case 'superadmin':
         case 'admin':

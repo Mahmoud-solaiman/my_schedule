@@ -1,14 +1,16 @@
 :root {
   --primary-bg: #121212;
-  --primary-color: #121212; // Super dark
-  --primary-btn: #0088FF; // Neon blue
-  --primary-text: #ffffff; // white
-  --secondary-color: #1e1e1e; // Ultra dark
-  --secondary-text: #B1B1B1; // light gray
-  --shadow-register-card: #b1b1b1; // light gray
-  --danger-color: #EC5158;
+  --primary-color: #121212; 
+  --primary-btn: #0088FF; 
+  --primary-text: #ffffff; 
+  --secondary-color: #1e1e1e; 
+  --secondary-text: #B1B1B1; 
+  --shadow-register-card: #b1b1b1; 
+  --danger-color: #ec5158;
   --success-color: #0EBC6B;
+  --success-color-dark: #0C8844;
   --warning-color: #F1A82F;
+  --primary-btn-shadow: #004785;
   interpolate-size: allow-keywords;
 }
 
@@ -17,7 +19,7 @@
   --primary-color: #1C2655;
   --primary-text: #000;
   --secondary-color: #1b1b32;
-
+  --shadow-register-card: #1b1b32; 
 }
 
 *::selection {

@@ -55,13 +55,15 @@
     cursor: pointer;
     font-weight: 600;
     transition: .2s linear;
+    box-shadow: 0 5px 0 var(--primary-btn-shadow);
 
     &:hover {
-      opacity: .7;
+      opacity: .8;
     }
-
+    
     &:active {
-      opacity: .5;
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 var(--primary-btn-shadow);
     }
   }
 

@@ -14,8 +14,8 @@
   }
 
   div.message {
-    background-color: green;
-    box-shadow: 0 0 10px rgb(0 128 0);
+    background-color: var(--success-color-dark);
+    box-shadow: 0 0 10px var(--success-color);
   }
 
   div > p {
