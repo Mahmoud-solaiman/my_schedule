@@ -12,6 +12,8 @@
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   overflow: hidden;
+  border-right: 1px solid var(--primary-border-color);
+  box-shadow: inset 0 5px 10px var(--primary-border-color);
 
   svg {
     fill: #fff;
@@ -44,6 +46,8 @@
     padding: 0.8rem;
     border-radius: 10px;
     overflow: hidden;
+    border: 1px solid var(--primary-border-color);
+    box-shadow: inset 0 2px 10px var(--primary-border-color);
 
     & > div:first-of-type {
       display: flex;
@@ -89,6 +93,8 @@
     padding: 0.4rem 0.5rem;
     border-radius: 10px;
     gap: .2rem;
+    border: 1px solid var(--primary-border-color);
+    box-shadow: inset 0 2px 10px var(--primary-border-color);
     
     a {
       overflow: hidden;
@@ -289,9 +295,11 @@
       border-radius: 50%;
       width: 50px;
       height: 50px;
+      border: 1px solid transparent;
 
       &:hover {
         background-color: var(--primary-color);
+        border-color: var(--primary-border-color);
       }
     }
   }
