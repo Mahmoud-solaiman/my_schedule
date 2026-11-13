@@ -65,3 +65,9 @@ export type RegisterInfoState = {
   isChecking: boolean;
   isCorrectTempPassword: boolean;
 }
+
+export type totalEmployeesResponse = {
+  msg: string;
+  success: string;
+  totalEmployees: number;
+}

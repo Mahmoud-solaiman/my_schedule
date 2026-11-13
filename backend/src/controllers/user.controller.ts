@@ -113,3 +113,27 @@ export const lookupUser = async (req: Request, res: Response) => {
     });
   }
 }
+
+export const getEmployees = async (_req: Request, res: Response) => {
+  try {
+    const employees = await userModel.find();
+
+    if (!employees.length) 
+      return res.status(404).json({
+        msg: "No employees found!",
+        success: false
+      });
+
+    res.status(200).json({
+      msg: "The total employees number was fetched successfully",
+      totalEmployees: employees.length,
+      success: true
+    });
+    
+  } catch (error) {
+    res.status(500).json({
+      msg: "Something went wrong on the server side. Please, try again later",
+      error,
+    });    
+  }
+}

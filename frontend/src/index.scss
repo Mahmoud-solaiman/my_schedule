@@ -2,16 +2,23 @@
   --primary-bg: #111315;
   --primary-color: #1C1F24; 
   --primary-btn: #0088FF; 
+  --primary-active-color: #0088FF;
+  --secondary-active-color: #0088ff40; 
   --primary-text: #ffffff; 
   --secondary-color: #191B1F; 
-  --secondary-text: #B1B1B1; 
+  --secondary-text: #A1A7B0; 
   --shadow-register-card: #b1b1b1; 
   --danger-color: #ec5158;
+  --danger-color-soft: #ff242f66;
   --success-color: #0EBC6B;
   --success-color-dark: #0C8844;
-  --warning-color: #F1A82F;
+  --success-color-soft: rgba(12, 136, 68, 0.473);
+  --warning-color: #F59E0B;
+  --warning-color-soft: #f59f0b1a;
   --primary-btn-shadow: #004785;
   --primary-border-color: #30343A;
+  --secondary-hover-color: #3e51ff;
+  --secondary-hover-color-soft: #3e51ff4d;
   interpolate-size: allow-keywords;
 }
 

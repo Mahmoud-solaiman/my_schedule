@@ -35,9 +35,12 @@
     padding-inline-end: .75rem;
     padding-block: .8rem;
     border-radius: 8px;
+    border: 1px solid var(--primary-border-color);
+    box-shadow: inset 0 3px 10px var(--primary-border-color);
 
     &:focus-within {
       outline: none;
+      border-color: var(--secondary-text);
     }
   }
 
@@ -54,7 +57,7 @@
     padding-block: .6rem;
     cursor: pointer;
     font-weight: 600;
-    transition: .2s linear;
+    transition: 50ms linear;
     box-shadow: 0 5px 0 var(--primary-btn-shadow);
 
     &:hover {
