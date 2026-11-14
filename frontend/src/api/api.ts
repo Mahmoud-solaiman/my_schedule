@@ -38,11 +38,11 @@ api.interceptors.response.use(
     if (axios.isAxiosError(error)) {
       const originalRequest = error.config as CustomAxiosRequestConfig;
 
-      if (error.response?.status === 401 && originalRequest && !originalRequest._retry) {
+      if (error.response?.status === 401 && originalRequest && !originalRequest._retry && window.location.pathname !== '/auth/register') {
         originalRequest._retry = true;
 
         try {
-          const response = await axios.post<RefreshResponse>('/auth/refresh', {}, { withCredentials: true });
+          const response = await axios.post<RefreshResponse>(`${import.meta.env.VITE_APP_URL}/api/auth/refresh`, {}, { withCredentials: true });
 
           const newToken = response.data.token;
 

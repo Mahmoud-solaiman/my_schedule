@@ -155,11 +155,13 @@ export const updatePassword = async (req: Request, res: Response) => {
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
+    const { password: _password, createdAt, updatedAt, isPasswordUpdated, __v, ...safeUser } = user.toObject();
 
     res.status(201).json({
       msg: "Your password was updated successfully",
       success: true,
-      token: accessToken
+      token: accessToken,
+      user: safeUser
     });
   } catch (error) {
     res.status(500).json({

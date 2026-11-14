@@ -24,6 +24,9 @@ export function Register({ setMessagePopUp }: AuthProps) {
   const checkTempPassword = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     const isValidEmail = EmailValidator.validate(registerationInfo.email);
+
+    if (!isValidEmail) return setMessagePopUp('Please check your email and try again!', true);
+
     if (!registerationInfo.isCorrectTempPassword && isValidEmail && registerationInfo.tempPassword) {
       setRegisterationInfo(prevInfo => ({ ...prevInfo, isChecking: true }));
       try {
@@ -57,6 +60,7 @@ export function Register({ setMessagePopUp }: AuthProps) {
           localStorage.setItem('token', response.data.token);
         }
 
+        console.log(response.data.user);
         switch (response.data.user?.role) {
           case 'superadmin':
           case 'admin':

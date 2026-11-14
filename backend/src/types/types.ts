@@ -7,6 +7,9 @@ export type User = {
   password: string;
   role: 'superadmin' | 'admin' | 'user';
   isPasswordUpdated: boolean;
+  title: string;
+  department: string;
+  account: string;
   permissions: {
     canAddAndRemoveAccounts: boolean;
     canChangeRoles: boolean;
@@ -14,6 +17,8 @@ export type User = {
     canCreateSchdedules: boolean;
     canEditTheirSchedule: boolean;
   }
+  createdAt: Date;
+  updatedAt: Date
 }
 
 export type JWTTokenPayload = {

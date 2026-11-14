@@ -29,6 +29,20 @@ const userSchema = new Schema<User>({
     required: true,
     default: false
   },
+  title: {
+    type: String,
+    required: true,
+    enum: ['agent', 'team leader', 'OPS manager', 'site manager', 'rtm', 'trainer', 'quality'],
+    default: 'agent',
+  },
+  department: {
+    type: String,
+    required: true,
+  },
+  account: {
+    type: String,
+    required: true
+  },
   permissions: {
     canAddAndRemoveAccounts: { type: Boolean, default: false },
     canChangeRoles: { type: Boolean, default: false },

@@ -20,9 +20,7 @@ export type User = {
   permissions: Permissions,
 }
 
-export type UserResponse = {
-  msg: string;
-  success: boolean;
+export type UserResponse = Omit<EmployeeResponse, 'users'> & {
   token?: string;
   user?: User
 };
@@ -66,8 +64,6 @@ export type RegisterInfoState = {
   isCorrectTempPassword: boolean;
 }
 
-export type totalEmployeesResponse = {
-  msg: string;
-  success: string;
+export type totalEmployeesResponse = Omit<EmployeeResponse, 'users'> & {
   totalEmployees: number;
 }

@@ -5,13 +5,29 @@ import { genPassword } from "../utils/genPassword";
 
 export const createUser = async (req: Request, res: Response) => {
   try {
-    const { username, email, password, role, isRandomPassword } = req.body;
+    const { 
+      username, 
+      email, 
+      password, 
+      role, 
+      isRandomPassword,
+      title,
+      department,
+      account 
+    } = req.body;
 
-    if (!username || !email || (!isRandomPassword && !password))
-      return res.status(400).json({
-        msg: "All fields are required. Please, fill all the required input fields",
-        success: false,
-      });
+    if (
+        !username || 
+        !email || 
+        (!isRandomPassword && !password) || 
+        !department || 
+        !account
+      ) {
+        return res.status(400).json({
+          msg: "All fields are required. Please, fill all the required input fields",
+          success: false,
+        });
+      }
 
     if (role === "superadmin") {
       const existingSuperAdmin = await userModel.findOne({ role });
@@ -39,7 +55,10 @@ export const createUser = async (req: Request, res: Response) => {
       username,
       email: email.toLowerCase(),
       password: hashedPassword,
-      role: role || "user",
+      role,
+      title,
+      department,
+      account
     });
 
     await user.save();
